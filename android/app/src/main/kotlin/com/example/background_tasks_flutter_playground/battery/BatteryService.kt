@@ -11,9 +11,10 @@ import android.os.Build.VERSION_CODES
 
 class BatteryService {
     companion object{
-        fun getBatteryLevel(appContext:Context, batteryManager: BatteryManager): Int {
+        fun getBatteryLevel(appContext:Context, activityContext:Context): Int {
             val batteryLevel: Int
             if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
+                val batteryManager = activityContext.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
                 batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
             } else {
                 val intent = ContextWrapper(appContext).registerReceiver(null, IntentFilter(Intent.ACTION_BATTERY_CHANGED))

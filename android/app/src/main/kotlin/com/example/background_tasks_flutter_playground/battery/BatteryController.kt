@@ -7,8 +7,8 @@ import io.flutter.plugin.common.MethodChannel
 
 
 class BatteryController(val result: MethodChannel.Result) {
-    fun route(appContext: Context,batteryManager: BatteryManager){
-        val batteryLevel = BatteryService.getBatteryLevel(appContext,batteryManager);
+    fun route(appContext: Context, activityContext:Context){
+        val batteryLevel = BatteryService.getBatteryLevel(appContext,activityContext);
         if (batteryLevel != -1) {
             result.success(batteryLevel)
         } else {
